@@ -1,14 +1,17 @@
-# 🌾 Crop Mantra - Intelligent Crop Recommendation System
+# 🌾 CropMantra - Intelligent Crop Recommendation System
 
 ## 📖 Project Overview
 
-**Crop Mantra** is an intelligent web-based crop recommendation system that leverages machine learning to help farmers and agricultural enthusiasts make data-driven decisions about crop selection. The system analyzes soil and environmental parameters to predict the most suitable crop for optimal yield.
+**CropMantra** is an intelligent web-based crop recommendation system that uses machine learning to help farmers and agricultural users make data-driven crop selection decisions.
 
-Agriculture in India is livelihood for a majority of the population and can never be underestimated. However, the agricultural sector is going through the most stressed phase in the last three decades. Indian agriculture is plagued by several problems; some of them are natural and some others are manmade. Nearly three-quarters of India's families depend on rural incomes. Every solution if rightly executed can make a huge difference.
+The system analyzes soil and environmental parameters and predicts a suitable crop based on the provided conditions.
 
 ## 🎯 Problem Statement
 
-Farmers often struggle with choosing the right crop for their land based on soil conditions, weather patterns, and environmental factors. Wrong crop selection leads to:
+Farmers often struggle with selecting the right crop for their land based on soil conditions, weather patterns, and environmental factors.
+
+Wrong crop selection can lead to:
+
 - Poor yield quality
 - Financial losses
 - Soil degradation
@@ -16,245 +19,290 @@ Farmers often struggle with choosing the right crop for their land based on soil
 
 ## 💡 Solution
 
-Our ML-powered web application analyzes multiple agricultural parameters and recommends the most suitable crop, ensuring:
-- **Higher crop yield**
-- **Better resource utilization**
-- **Data-driven farming decisions**
-- **Sustainable agriculture practices**
+CropMantra uses a machine learning model to analyze agricultural parameters and recommend a suitable crop.
+
+The system aims to support:
+
+- Better crop selection
+- Better resource utilization
+- Data-driven farming decisions
+- Sustainable agriculture practices
 
 ## 🔬 Dataset Information
 
-The system uses a comprehensive agricultural dataset with **2,200 samples** containing:
+The system uses an agricultural dataset containing **2,200 samples**.
 
-### Input Features (8 parameters):
-1. **N (Nitrogen)** - Nitrogen content in soil (0-140 kg/ha)
-2. **P (Phosphorus)** - Phosphorus content in soil (5-145 kg/ha)
-3. **K (Potassium)** - Potassium content in soil (5-205 kg/ha)
-4. **Temperature** - Average temperature (8.8°C - 43.7°C)
-5. **Humidity** - Relative humidity (14% - 99%)
-6. **pH** - Soil pH level (3.5 - 9.9)
-7. **Rainfall** - Annual rainfall (20mm - 298mm)
-8. **Water Usage** - Derived feature (Low/Medium/High) based on rainfall
+### Input Features
 
-### Output:
-**22 Different Crops** including:
-- **Cereals**: Rice, Maize
-- **Pulses**: Chickpea, Kidney beans, Pigeon peas, Moth beans, Mung bean, Black gram, Lentil
-- **Fruits**: Pomegranate, Banana, Mango, Grapes, Watermelon, Muskmelon, Apple, Orange, Papaya, Coconut
-- **Cash Crops**: Cotton, Jute, Coffee
+The model uses the following parameters:
+
+1. **N (Nitrogen)** - Nitrogen content in soil
+2. **P (Phosphorus)** - Phosphorus content in soil
+3. **K (Potassium)** - Potassium content in soil
+4. **Temperature** - Average temperature
+5. **Humidity** - Relative humidity
+6. **pH** - Soil pH level
+7. **Rainfall** - Annual rainfall
+8. **Water Usage** - Derived feature based on rainfall
+
+### Output
+
+The system can classify the input into **22 different crops**, including:
+
+- Rice
+- Maize
+- Chickpea
+- Kidney Beans
+- Pigeon Peas
+- Moth Beans
+- Mung Bean
+- Black Gram
+- Lentil
+- Pomegranate
+- Banana
+- Mango
+- Grapes
+- Watermelon
+- Muskmelon
+- Apple
+- Orange
+- Papaya
+- Coconut
+- Cotton
+- Jute
+- Coffee
 
 ## 🤖 Machine Learning Model
 
-### Algorithm: **Random Forest Classifier**
-- **Estimators**: 500 trees
-- **Criterion**: Entropy
-- **Train-Test Split**: 70-30
-- **Features**: 8 input parameters
+### Algorithm
 
-### Model Performance:
-- **Training Data**: 1,540 samples
-- **Testing Data**: 660 samples
-- **Accuracy**: High performance on crop classification
+**Random Forest Classifier**
 
-### Data Preprocessing:
-1. **Missing Value Handling**:
-   - P, K: Filled with 0 (nutrient deficiency)
-   - Numerical features: Mean imputation
-   - Categorical features: Mode imputation
+Model configuration:
 
-2. **Feature Engineering**:
-   - Water Usage categorization based on rainfall:
-     - Low: ≤150mm
-     - High: >250mm
-     - Medium: 150-250mm
+- **Estimators:** 500 trees
+- **Criterion:** Entropy
+- **Train-Test Split:** 70-30
+- **Features:** 8 input parameters
 
-3. **Encoding**: Label encoding for categorical features
+### Model Data
+
+- **Training Samples:** 1,540
+- **Testing Samples:** 660
+
+### Data Preprocessing
+
+The project includes preprocessing and feature engineering steps such as:
+
+1. Missing value handling
+2. Numerical feature imputation
+3. Categorical feature imputation
+4. Water usage categorization based on rainfall
+5. Label encoding for categorical features
 
 ## 🏗️ System Architecture
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   User Input    │ -> │  Flask Web App  │ -> │  ML Model       │
-│  (8 parameters) │    │  (app.py)       │    │  (model.pkl)    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-                       ┌─────────────────┐
-                       │  Crop Prediction│
-                       │  & Web Response │
-                       └─────────────────┘
-```
+```text
+┌─────────────────┐
+│   User Input    │
+│  8 Parameters   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Flask Web App │
+│     (app.py)    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│    ML Model     │
+│   (model.pkl)   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Crop Prediction │
+│  & Web Response │
+└─────────────────┘
+📁 Project Structure
+CropMantra/
+│
+├── app.py                  # Flask web application
+├── model.py                # ML model training script
+├── model.pkl               # Trained ML model
+├── plant(IBM - Z).csv      # Agricultural dataset
+├── requirements.txt        # Python dependencies
+│
+├── templates/
+│   └── index.html          # Web interface template
+│
+├── static/
+│   └── css/
+│       └── style.css       # Web styling
+│
+├── Crop Mantra.ipynb       # Jupyter notebook
+├── CropAnalysis.png        # Project image
+├── index.html              # HTML file
+├── style.css               # CSS file
+├── README.md               # Project documentation
+└── .gitignore              # Git ignored files
+🚀 Installation & Setup
+Prerequisites
+Python 3.7+
+pip package manager
+Git
+1. Clone the Repository
+git clone https://github.com/lokeshpanwar258/CropMantra.git
+cd CropMantra
+2. Create a Virtual Environment
+Windows
+python -m venv .venv
+.venv\Scripts\activate
+Linux / macOS
+python -m venv .venv
+source .venv/bin/activate
+3. Install Dependencies
+pip install -r requirements.txt
+4. Train the Model
 
-## 📁 Project Structure
+If model.pkl is not available, train the model using:
 
-```
-crop-analysis/
-├── 📄 app.py                    # Flask web application
-├── 📄 model.py                  # ML model training script
-├── 📄 model.pkl                 # Trained ML model (serialized)
-├── 📊 plant(IBM - Z).csv        # Dataset (2,200 samples)
-├── 📋 requirements.txt          # Python dependencies
-├── 🗂️ templates/
-│   └── 📄 index.html           # Web interface template
-├── 🗂️ static/
-│   └── 🎨 css/
-│       └── 📄 style.css        # Web styling
-├── 📓 Crop Mantra.ipynb        # Jupyter notebook analysis
-├── 📄 README.md                # Project documentation
-└── 📄 Procfile                 # Deployment configuration
-```
+python model.py
+5. Run the Application
+python app.py
+6. Open the Application
 
-## 🚀 Installation & Setup
+Open your browser and visit:
 
-### Prerequisites
-- Python 3.7+
-- pip package manager
+http://127.0.0.1:5000
+🎮 Usage Instructions
+Open the CropMantra web application.
+Enter the required agricultural parameters:
+Nitrogen
+Phosphorus
+Potassium
+Temperature
+Humidity
+Soil pH
+Rainfall
+Water Usage
+Click the Predict button.
+View the recommended crop.
+📊 Sample Test Values
+🌾 Rice
+N: 90
+P: 42
+K: 43
+Temperature: 20.8
+Humidity: 82
+pH: 6.5
+Rainfall: 203
+Water Level: 2
 
-### Step-by-step Installation
+Expected output:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/ajaymehta369/crop-analysis.git
-   cd crop-analysis
-   ```
+rice
+🌽 Maize
+N: 78
+P: 52
+K: 48
+Temperature: 22.5
+Humidity: 65
+pH: 6.2
+Rainfall: 76
+Water Level: 1
 
-2. **Create virtual environment**
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate  # Windows
-   # source .venv/bin/activate  # Linux/Mac
-   ```
+Expected output:
 
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+maize
+🫘 Chickpea
+N: 40
+P: 58
+K: 20
+Temperature: 25
+Humidity: 55
+pH: 7.2
+Rainfall: 45
+Water Level: 0
 
-4. **Train the model** (if model.pkl doesn't exist)
-   ```bash
-   python model.py
-   ```
+Expected output:
 
-5. **Run the application**
-   ```bash
-   python app.py
-   ```
+chickpea
+☕ Coffee
+N: 61
+P: 38
+K: 55
+Temperature: 24
+Humidity: 76
+pH: 6.8
+Rainfall: 180
+Water Level: 2
 
-6. **Access the application**
-   - Open browser and navigate to: `http://127.0.0.1:5000`
+Expected output:
 
-## 🎮 Usage Instructions
+coffee
+🍌 Banana
+N: 100
+P: 75
+K: 50
+Temperature: 27
+Humidity: 80
+pH: 6.0
+Rainfall: 120
+Water Level: 1
 
-1. **Open the web application** in your browser
-2. **Input the following parameters**:
-   - Nitrogen content (N)
-   - Phosphorus content (P) 
-   - Potassium content (K)
-   - Temperature (°C)
-   - Humidity (%)
-   - Soil pH level
-   - Rainfall (mm)
-   - Water Level/Usage
-3. **Click "Predict"** button
-4. **View the recommended crop** for optimal yield
+Expected output:
 
-## 📊 Test Values for Model Testing
+banana
+🛠️ Technologies & Tools Used
+Backend
+Python
+Flask
+scikit-learn
+Pandas
+NumPy
+Pickle
+Frontend
+HTML5
+CSS3
+Jinja2
+Machine Learning
+Random Forest Classifier
+Label Encoding
+Train-Test Split
+Development Tools
+Jupyter Notebook
+Git
+GitHub
+Python Virtual Environment
+🌟 Key Features
+🌱 Machine Learning based crop recommendation
+🌾 22 crop classifications
+🖥️ User-friendly web interface
+📊 Multiple soil and environmental parameters
+⚡ Instant prediction results
+📱 Responsive web design
+🔬 Data preprocessing and feature engineering
+🔮 Future Enhancements
+Weather API integration
+Soil testing kit integration
+Regional crop database
+Yield prediction
+Mobile application
+Multi-language support
+Historical data analysis
+Market price integration
+🤝 Contributing
 
-Here are some sample test cases you can use:
+Contributions are welcome.
 
-### 🌾 Rice Prediction:
-```
-N: 90, P: 42, K: 43, Temperature: 20.8, Humidity: 82, pH: 6.5, Rainfall: 203, Water Level: 2
-Expected Output: rice
-```
+Fork the repository.
+Create a feature branch.
+Make your changes.
+Commit your changes.
+Push the branch.
+Create a Pull Request.
+📄 License
 
-### 🌽 Maize Prediction:
-```
-N: 78, P: 52, K: 48, Temperature: 22.5, Humidity: 65, pH: 6.2, Rainfall: 76, Water Level: 1
-Expected Output: maize
-```
-
-### 🫘 Chickpea Prediction:
-```
-N: 40, P: 58, K: 20, Temperature: 25, Humidity: 55, pH: 7.2, Rainfall: 45, Water Level: 0
-Expected Output: chickpea
-```
-
-### ☕ Coffee Prediction:
-```
-N: 61, P: 38, K: 55, Temperature: 24, Humidity: 76, pH: 6.8, Rainfall: 180, Water Level: 2
-Expected Output: coffee
-```
-
-### 🍌 Banana Prediction:
-```
-N: 100, P: 75, K: 50, Temperature: 27, Humidity: 80, pH: 6.0, Rainfall: 120, Water Level: 1
-Expected Output: banana
-```
-
-## 🛠️ Technologies & Tools Used
-
-### Backend Technologies:
-- **Python 3.x** - Core programming language
-- **Flask** - Web framework for API development
-- **scikit-learn** - Machine learning library
-- **Pandas** - Data manipulation and analysis
-- **NumPy** - Numerical computing
-- **Pickle** - Model serialization
-
-### Frontend Technologies:
-- **HTML5** - Web structure
-- **CSS3** - Styling and responsive design
-- **Jinja2** - Template engine
-
-### Development Tools:
-- **Jupyter Notebook** - Data analysis and experimentation
-- **Git & GitHub** - Version control
-- **Virtual Environment** - Dependency management
-
-### Machine Learning Stack:
-- **Random Forest** - Classification algorithm
-- **Label Encoder** - Categorical data encoding
-- **Train-Test Split** - Model validation
-
-## 🌟 Key Features
-
-- ✅ **Real-time Crop Prediction**
-- ✅ **User-friendly Web Interface**
-- ✅ **22 Different Crop Classifications**
-- ✅ **High Accuracy ML Model**
-- ✅ **Responsive Design**
-- ✅ **Easy Parameter Input**
-- ✅ **Instant Results**
-
-## 🔮 Future Enhancements
-
-- [ ] **Weather API Integration** for real-time weather data
-- [ ] **Soil Testing Kit Integration** for precise soil analysis
-- [ ] **Regional Crop Database** for location-specific recommendations
-- [ ] **Yield Prediction** along with crop recommendation
-- [ ] **Mobile Application** for field use
-- [ ] **Multi-language Support** for regional farmers
-- [ ] **Historical Data Analysis** and trends
-- [ ] **Market Price Integration** for profit optimization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -am 'Add new feature'`)
-4. Push to branch (`git push origin feature/new-feature`)
-5. Create Pull Request
-
-## 📧 Contact
-
-**Project Maintainer**: Ajay Mehta
-- GitHub: [@ajaymehta369](https://github.com/ajaymehta369)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-**Made with ❤️ for sustainable agriculture and better farming decisions** - get the perfect crop yield 
+This project is created for educational and project demonstration purposes.
